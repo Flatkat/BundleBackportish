@@ -46,14 +46,14 @@ public class BundleColoringRecipe extends SpecialCraftingRecipe {
     }
 
     public boolean matches(RecipeInputInventory recipeInputInventory, World world) {
-        var items = recipeInputInventory.getInputStacks().stream().map(ItemStack::getItem).toList();
+        var items = recipeInputInventory.getHeldStacks().stream().map(ItemStack::getItem).toList();
         return containsExactly(items, item -> item instanceof BundleItem, 1) &&
                 containsExactly(items, COLORS::containsKey, 1);
     }
 
     public ItemStack craft(RecipeInputInventory recipeInputInventory, DynamicRegistryManager dynamicRegistryManager) {
-        var bundle = find(recipeInputInventory.getInputStacks(), stack -> stack.getItem() instanceof BundleItem);
-        var dye = find(recipeInputInventory.getInputStacks(), stack -> COLORS.containsKey(stack.getItem()));
+        var bundle = find(recipeInputInventory.getHeldStacks(), stack -> stack.getItem() instanceof BundleItem);
+        var dye = find(recipeInputInventory.getHeldStacks(), stack -> COLORS.containsKey(stack.getItem()));
         if (bundle == null || dye == null) return ItemStack.EMPTY; // This shouldn't happen but just in case
         var outputBundle = COLORS.get(dye.getItem());
         if (bundle.isOf(outputBundle)) return ItemStack.EMPTY;

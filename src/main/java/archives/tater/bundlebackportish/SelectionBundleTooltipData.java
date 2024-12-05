@@ -1,7 +1,7 @@
 package archives.tater.bundlebackportish;
 
-import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.BundleTooltipData;
 import net.minecraft.util.collection.DefaultedList;
 
 public class SelectionBundleTooltipData extends BundleTooltipData {
